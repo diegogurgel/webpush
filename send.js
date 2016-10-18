@@ -11,7 +11,7 @@ webpush.setVapidDetails(
 );
 
 // This is the same output of calling JSON.stringify on a PushSubscription
-const pushSubscription = {"endpoint":"https://android.googleapis.com/gcm/send/cDhovWdK_fE:APA91bFHrSk64_ggLvbGbFM…TWke5RMujlhq_1kuMNE0tqu4KKwoHNSzQh_00EJ-OSDMeYTW_-8yPcTo2ejvALWvfuvdjHHjOW","keys":{"p256dh":"BE647Gb-MmXGavNJOisXXmZYAqmSaGP6-buL7-d3X77D1-7dCFY9pir7uzsHdR5wGEi4oc31MBPz7bxWKV7TdFs=","auth":"YYWHk3-SnOsbjh_uI7FBZg=="}}
+const pushSubscription = {"endpoint":"https://android.googleapis.com/gcm/send/ebndi3NXRGs:APA91bFNIKjdaEiIt9LTQCb…ErqAQt70bwU2QSy9LCazZe9pEgmtb10xFEdpdWxkOlw4gsMRm1dIxDRV3l8G2BYuVxU5TyESjm","keys":{"p256dh":"BPAHF3dNst4Opx9f5M67fcxEZ4Kes1AcjproZKLfp0QQ6HIf26yPBYE7igt3fTMnbFNzhAJRlw06AazmBRNnMeU=","auth":"AvONQm7g3V5igMPaqtqzZQ=="}}
 
     const params = {
         title: 'Test title',

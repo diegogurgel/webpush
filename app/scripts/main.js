@@ -24,7 +24,6 @@ function str2ab(str) {
       return swRegistration.pushManager.subscribe(
       {
         userVisibleOnly:true,
-        applicationServerKey: str2ab('BDN-YHh2luI54FkVRVoNx2suIfdnPSb6rn-JYKZTSKFbDsBrz6O-n_XCO4MrvdSsRcp_CAymSXkQ45WmANbZlr4')
       });
     }).then(subscription=>{
       console.log(subscription);
