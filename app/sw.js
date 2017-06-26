@@ -1,18 +1,12 @@
 'use strict';
 
 self.addEventListener('push', function(event) {
-  console.log('Received a push message', event);
-
-  var title = 'Yay a message.';
-  var body = 'We have received a push message.';
-  var icon = 'apple-touch-icon.png';
-  var tag = 'simple-push-demo-notification-tag';
-
+  let data = event.data.json();
   event.waitUntil(
-    self.registration.showNotification(title, {
-      body: body,
-      icon: icon,
-      tag: tag
+    self.registration.showNotification(data.title, {
+      body: data.message,
+      icon: 'apple-touch-icon.png',
+      tag: data.tag
     })
   );
 });
