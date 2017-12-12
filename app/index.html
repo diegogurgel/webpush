@@ -30,12 +30,26 @@
     <button>Register</button>
 
     <!-- build:js scripts/vendor.js -->
+<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBoCXARawmunDfroyVvaDOxBZ6jdHZrjEM",
+    authDomain: "green-link-639.firebaseapp.com",
+    databaseURL: "https://green-link-639.firebaseio.com",
+    projectId: "green-link-639",
+    storageBucket: "green-link-639.appspot.com",
+    messagingSenderId: "827747435376"
+  };
+  firebase.initializeApp(config);
+</script>
     <!-- bower:js -->
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
+    <script src="scripts/connect.js"></script>
     <!-- endbuild -->
   </body>
 </html>

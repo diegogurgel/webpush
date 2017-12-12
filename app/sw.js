@@ -5,8 +5,6 @@ self.addEventListener('push', function(event) {
   event.waitUntil(
     self.registration.showNotification(data.title, {
       body: data.message,
-      icon: 'apple-touch-icon.png',
-      tag: data.tag
     })
   );
 });

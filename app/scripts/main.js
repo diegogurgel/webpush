@@ -1,61 +1,50 @@
-
-
-
-  function initialState () {
-      navigator.serviceWorker.ready.then(swRegistration=>{
-        swRegistration.pushManager.getSubscription().then(sub=>{
-          console.log('subscription', sub);
-        }).catch(err=>{
-          console.log('fail to get subscription', err);
-        });
+function initialState () {
+    navigator.serviceWorker.ready.then(swRegistration=>{
+      swRegistration.pushManager.getSubscription().then(sub=>{
+        console.log('subscription', JSON.stringify(sub));
+      }).catch(err=>{
+        console.log('fail to get subscription', err);
       });
-  }
-function str2ab(str) {
-  var buf = new ArrayBuffer(str.length); // 2 bytes for each char
-  var bufView = new Uint8Array(buf);
-  for (var i=0, strLen=str.length; i<strLen; i++) {
-    bufView[i] = str.charCodeAt(i);
-  }
-  return buf;
+    });
+}
+function register () {
+  navigator.serviceWorker.ready.then(swRegistration=>{
+    return swRegistration.pushManager.subscribe(
+    {
+      userVisibleOnly:true,
+    });
+  }).then(subscription=>{
+    saveSubscription(subscription);
+  }).catch(error=>{
+    console.log(error)
+  });
+}
+function saveSubscription(subscription) {
+  firebase.database()
+    .ref('subscriptions/' + Date.now())
+    .set(subscription.toJSON())
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
 }
 
-  function register () {
-    navigator.serviceWorker.ready.then(swRegistration=>{
-      return swRegistration.pushManager.subscribe(
-      {
-        userVisibleOnly:true,
-      });
-    }).then(subscription=>{
-      console.log(subscription);
-      console.log(JSON.stringify(subscription));
-    }).catch(error=>{
-
-    });
-  }
-
-
-
-(()=>{
-  console.log('button');
+( _ => {
   let button = document.querySelector('button');
-
   button.addEventListener('click',function(){
     register();
   });
 
 })();
 
-
-
-
-  // Check that service workers are supported, if so, progressively
-  // enhance and add push messaging support, otherwise continue without it.
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js')
-    .then(initialState);
-  } else {
-    console.log.log('Service workers aren\'t supported in this browser.');
-  }
+//PWA
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').then(initialState);
+} else {
+  console.log.log('Service workers aren\'t supported in this browser.');
+}
 
 
 
