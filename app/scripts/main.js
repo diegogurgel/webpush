@@ -1,7 +1,7 @@
-function initialState () {
+function checkSubscription () {
     navigator.serviceWorker.ready.then(swRegistration=>{
       swRegistration.pushManager.getSubscription().then(sub=>{
-        console.log('subscription', JSON.stringify(sub));
+        if(!sub) register()
       }).catch(err=>{
         console.log('fail to get subscription', err);
       });
@@ -33,15 +33,13 @@ function saveSubscription(subscription) {
 
 ( _ => {
   let button = document.querySelector('button');
-  button.addEventListener('click',function(){
-    register();
-  });
+  button.addEventListener('click', checkSubscription);
 
 })();
 
 //PWA
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').then(initialState);
+  navigator.serviceWorker.register('sw.js');
 } else {
   console.log.log('Service workers aren\'t supported in this browser.');
 }
